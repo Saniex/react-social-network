@@ -1,5 +1,21 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { 
+    setSidebarStatus 
+} from '../../store/appSlice';
+
+import { 
+    selectAuthStatus 
+} from '../../store/authSlice';
+
+import Button from '../Button';
+import Icon from '../Icon';
+
+import { ReactComponent as Menu } from '../../assets/icons/menu.svg';
+import { ReactComponent as SignIn } from '../../assets/icons/sign-in.svg';
+import { ReactComponent as SignOut } from '../../assets/icons/sign-out.svg';
 
 
 
@@ -16,6 +32,10 @@ const Wrapper = styled.div`
     background: ${({theme}) => theme.lightBackground};
     box-shadow: 0 3px 4px rgb(58 46 68 / 4%);
     padding: 10px 2.5%;
+
+    ${({theme}) => theme.breakpoints.mobile} {
+        min-height: 55px;
+    }
 `;
 
 const MainLogo = styled(NavLink)`
@@ -35,17 +55,68 @@ const MainLogo = styled(NavLink)`
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none; 
+    user-select: none;
+
+    ${({theme}) => theme.breakpoints.mobile} {
+        font-size: 24px;
+    }
+`;
+
+const Actions = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const ActionButton = styled(Button)`
+`;
+
+const MenuButton = styled(ActionButton)`
+    padding: 10px;
+
+    ${({theme}) => theme.breakpoints.desktop} {
+        display: none;
+    }
 `;
 
 
 
 const Header = props => {
+
+    const dispatch = useDispatch();
+
+    const isAuth = useSelector(selectAuthStatus);
+
+
+
+    const menuButtonHandler = () => dispatch(setSidebarStatus());
+
+
+
     return (
         <Wrapper>
             <MainLogo to="/">
                 Social Network
             </MainLogo>
+            <Actions>
+                {
+                    isAuth ?
+
+                    <ActionButton color="red">
+                        <Icon button="true" as={SignOut} />
+                        <span>Sign Out</span>
+                    </ActionButton> :
+
+                    <NavLink to="/login">
+                        <ActionButton color="blue">
+                            <Icon button="true" as={SignIn} />
+                            <span>Sign In</span>
+                        </ActionButton>
+                    </NavLink>
+                }
+                <MenuButton>
+                    <Icon as={Menu} onClick={menuButtonHandler} />
+                </MenuButton> 
+            </Actions>
         </Wrapper>
     )
 }

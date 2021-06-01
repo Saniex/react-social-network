@@ -1,10 +1,10 @@
-import samuraiAPI from '../utils/API';
+import API from '../utils/API';
 
 
 
 const authAPI = {
     me: async () => {
-        const authData = await samuraiAPI.get('auth/1me');
+        const authData = await API.get('auth/me');
 
         return authData.data;
     },

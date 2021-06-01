@@ -13,6 +13,7 @@ import {
 import Preloader from './components/Preloader';
 import ErrorPage from './pages/error/ErrorPage';
 import Header from './components/header/Header';
+import Sidebar from './components/sidebar/Sidebar';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
 import GlobalStyle from './utils/globalStyle';
@@ -75,6 +76,7 @@ const App = props => {
       <GlobalStyle />
       <MainWrapper>
         <Header />
+        <Sidebar />
       </MainWrapper>
     </ThemeProvider>
   );

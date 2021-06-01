@@ -16,7 +16,7 @@ export const getAuthStatus = createAsyncThunk(
         }
         catch(error) {
             dispatch(setErrorStatus(null));
-            throw new Error(error.message);
+            throw new Error(error);
         }
     }
 );
@@ -26,7 +26,9 @@ export const getAuthStatus = createAsyncThunk(
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        userData: null,
+        currentUserData: {},
+        currentUserStatus: null,
+        currentUserProfile: {},
         isAuth: false,
         isFetching: false,
     },
@@ -40,12 +42,12 @@ const authSlice = createSlice({
         [getAuthStatus.fulfilled]: (state, { payload }) => {
             switch(payload.resultCode) {
                 case 0:
-                    state.userData = payload.data;
+                    state.currentUserData = payload.data;
                     state.isAuth = true;
                     break;
                 
                 case 1:
-                    state.userData = null;
+                    state.currentUserData = {};
                     state.isAuth = false;
                     break;
 
@@ -53,15 +55,16 @@ const authSlice = createSlice({
             }
             state.isFetching = false;
         },
-        [getAuthStatus.rejected]: state => {
+        [getAuthStatus.rejected]: (state, { error }) => {
             state.isFetching = false;
+            console.error(error.message);
         },
     }
 });
 
 
 
-export const selectUserData = state => state.auth.userData;
+export const selectCurrentUserData = state => state.auth.currentUserData;
 export const selectAuthStatus = state => state.auth.isAuth;
 export const selectAuthFetchingStatus = state => state.auth.isFetching;
 
