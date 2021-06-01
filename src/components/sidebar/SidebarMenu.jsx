@@ -1,5 +1,10 @@
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
+import {
+    setSidebarStatus
+} from '../../store/appSlice';
 
 import Icon from '../Icon';
 
@@ -49,23 +54,30 @@ const MenuIcon = styled(Icon)`
 
 
 
-const SidebarMenu = props => {
+const SidebarMenu = ({ isSidebarOpen }) => {
+
+    const dispatch = useDispatch();
+
+    const sidebarHandler = () => isSidebarOpen && dispatch(setSidebarStatus());
+
+
+
     return (
         <Wrapper>
             <li>
-                <MenuLink exact to="/profile" activeClassName="active">
+                <MenuLink exact to="/profile" activeClassName="active" onClick={sidebarHandler}>
                     <MenuIcon as={User} />
                     <span>Profile</span>
                 </MenuLink>
             </li>
             <li>
-                <MenuLink to="/chat" activeClassName="active">
+                <MenuLink to="/chat" activeClassName="active" onClick={sidebarHandler}>
                     <MenuIcon as={Chat} />
                     <span>Chat</span>
                 </MenuLink>
             </li>
             <li>
-                <MenuLink to="/search" activeClassName="active">
+                <MenuLink to="/search" activeClassName="active" onClick={sidebarHandler}>
                     <MenuIcon as={Search} />
                     <span>Search</span>
                 </MenuLink>

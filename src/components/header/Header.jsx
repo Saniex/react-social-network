@@ -3,10 +3,13 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { 
+    selectSidebarStatus,
     setSidebarStatus 
 } from '../../store/appSlice';
 
-import { 
+import {
+    getLogOut,
+    selectAuthFetchingStatus,
     selectAuthStatus 
 } from '../../store/authSlice';
 
@@ -85,10 +88,16 @@ const Header = props => {
     const dispatch = useDispatch();
 
     const isAuth = useSelector(selectAuthStatus);
+    const isAuthFetching = useSelector(selectAuthFetchingStatus);
+    const isSidebarOpen = useSelector(selectSidebarStatus);
 
 
 
     const menuButtonHandler = () => dispatch(setSidebarStatus());
+
+    const handleLogOut = () => dispatch(getLogOut());
+
+    const sidebarHandler = () => isSidebarOpen && dispatch(setSidebarStatus());
 
 
 
@@ -101,12 +110,12 @@ const Header = props => {
                 {
                     isAuth ?
 
-                    <ActionButton color="red">
+                    <ActionButton color="red" onClick={handleLogOut} disabled={isAuthFetching}>
                         <Icon button="true" as={SignOut} />
                         <span>Sign Out</span>
                     </ActionButton> :
 
-                    <NavLink to="/login">
+                    <NavLink to="/login" onClick={sidebarHandler}>
                         <ActionButton color="blue">
                             <Icon button="true" as={SignIn} />
                             <span>Sign In</span>

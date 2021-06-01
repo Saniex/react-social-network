@@ -21,6 +21,36 @@ export const getAuthStatus = createAsyncThunk(
     }
 );
 
+export const getLogIn = createAsyncThunk(
+    'auth/getLogIn',
+    async (accountData, { dispatch }) => {
+        try {
+            const logInData = await authAPI.logIn(accountData);
+            if (logInData.resultCode === 0) dispatch(getAuthStatus());
+
+            return logInData;
+        }
+        catch(error) {
+            setTimeout(() => dispatch(getLogIn(accountData)), 1000);
+        }
+    }
+);
+
+export const getLogOut = createAsyncThunk(
+    'auth/getLogOut',
+    async (_, { dispatch }) => {
+        try {
+            const logOutData = await authAPI.logOut();
+            if (logOutData.resultCode === 0) dispatch(getAuthStatus());
+
+            return logOutData;
+        }
+        catch(error) {
+            setTimeout(() => dispatch(getLogOut()), 1000);
+        }
+    }
+);
+
 
 
 const authSlice = createSlice({
@@ -31,6 +61,12 @@ const authSlice = createSlice({
         currentUserProfile: {},
         isAuth: false,
         isFetching: false,
+        authErrorMessage: null
+    },
+    reducers: {
+        deleteAuthErrorMessage: state => {
+            state.authErrorMessage = null;
+        }
     },
     extraReducers: {
 
@@ -59,6 +95,44 @@ const authSlice = createSlice({
             state.isFetching = false;
             console.error(error.message);
         },
+
+        //@ Get log in
+
+        [getLogIn.pending]: state => {
+            state.isFetching = true;
+        },
+        [getLogIn.fulfilled]: ( state, { payload } ) => {
+            switch(payload.resultCode) {
+                case 0:
+                    break;
+                
+                case 1:
+                    state.authErrorMessage = 'You entered an incorrect username or password';
+                    break;
+                
+                case 10:
+                    state.authErrorMessage = 'You entered an incorrect Capcha';
+                    break;
+
+                default: break;
+            }
+            if (payload.resultCode !== 0) state.isFetching = false;
+        },
+        [getLogIn.rejected]: state => {
+            state.isFetching = false;
+        },
+
+        //@ Get log out
+
+        [getLogOut.pending]: state => {
+            state.isFetching = true;
+        },
+        [getLogOut.fulfilled]: ( state, { payload } ) => {
+            if (payload.resultCode !== 0) state.isFetching = false;
+        },
+        [getLogOut.rejected]: state => {
+            state.isFetching = false;
+        },
     }
 });
 
@@ -67,6 +141,7 @@ const authSlice = createSlice({
 export const selectCurrentUserData = state => state.auth.currentUserData;
 export const selectAuthStatus = state => state.auth.isAuth;
 export const selectAuthFetchingStatus = state => state.auth.isFetching;
+export const selectAuthErrorMessage = state => state.auth.authErrorMessage;
 
 
 

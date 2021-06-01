@@ -7,12 +7,12 @@ const Wrapper = styled.button`
     justify-content: center;
     align-items: center;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: ${({theme}) => theme.radius};
     font-family: ${({theme}) => theme.secondaryFont};
     font-size: 16px;
     font-weight: 700;
     color: ${({theme}) => theme.mainText};
-    padding: 5px 15px;
+    padding: 6px 24px;
 
     ${({color}) => {
         switch(color) {

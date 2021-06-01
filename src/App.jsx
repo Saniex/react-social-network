@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { 
@@ -14,6 +15,7 @@ import Preloader from './components/Preloader';
 import ErrorPage from './pages/error/ErrorPage';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
+import LoginPage from './pages/login/LoginPage';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
 import GlobalStyle from './utils/globalStyle';
@@ -22,10 +24,21 @@ import GlobalStyle from './utils/globalStyle';
 
 const MainWrapper = styled.div`
   position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+`;
+
+const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden;
+  padding: 90px 25px 25px 25px;
+  margin: 0 0 0 300px;
+
+  ${({theme}) => theme.breakpoints.touch} {
+    padding: 80px 15px 15px 15px;
+    margin: 0;
+  }
 `;
 
 
@@ -77,6 +90,12 @@ const App = props => {
       <MainWrapper>
         <Header />
         <Sidebar />
+        <PageWrapper>
+          <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Redirect to="/profile" />
+          </Switch>
+        </PageWrapper>
       </MainWrapper>
     </ThemeProvider>
   );

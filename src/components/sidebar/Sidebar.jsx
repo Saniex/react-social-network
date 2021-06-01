@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import {
@@ -11,12 +11,14 @@ import SidebarMenu from './SidebarMenu';
 
 const Wrapper = styled.div`
     position: fixed;
+    z-index: 100;
     top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     width: 300px;
     height: 100vh;
+    background: ${({theme}) => theme.mainBackground};
     border-right: 1px solid ${({theme}) => theme.border};
     padding: 90px 25px 25px 25px;
     transform: translateX(-150%);
@@ -24,7 +26,7 @@ const Wrapper = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
 
-    ${({isOpen}) => isOpen && css`
+    ${({isSidebarOpen}) => isSidebarOpen && css`
         transform: translateX(0);
     `};
     
@@ -63,9 +65,9 @@ const Sidebar = props => {
 
 
     return (
-        <Wrapper isOpen={isSidebarOpen}>
+        <Wrapper isSidebarOpen={isSidebarOpen}>
             <Section>
-                <SidebarMenu />
+                <SidebarMenu isSidebarOpen={isSidebarOpen} />
             </Section>
         </Wrapper>
     )
