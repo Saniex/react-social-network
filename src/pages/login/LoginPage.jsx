@@ -61,10 +61,6 @@ const LoginInput = styled(Input)`
     &:last-child {
         margin: 0 0 15px 0;
     }
-
-    ${({theme}) => theme.breakpoints.tablet} {
-        height: 40px;
-    }
 `;
 
 const CheckboxWrapper = styled.div`
@@ -172,7 +168,7 @@ const LoginPage = props => {
 
     return (
         <Wrapper>
-            <LoginForm ref={loginForm} onSubmit={handleSubmit(loginFormHandler)}>
+            <LoginForm ref={loginForm} onChange={resetErrors} onSubmit={handleSubmit(loginFormHandler)}>
                 <Title>
                     Sign In
                 </Title>

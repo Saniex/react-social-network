@@ -8,6 +8,7 @@ import check from '../assets/icons/check.svg';
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
+    background: ${({theme}) => theme.lightBackground};
 
     input:checked + label:before {
         background-image: url(${check});
@@ -36,10 +37,18 @@ const Label = styled.label`
         display: inline-block;
         width: 16px;
         height: 16px;
-        background: #fff;
         border: 2px solid ${({theme}) => theme.border};
         border-radius: 2px;
     }
+
+    ${({theme}) => theme.breakpoints.tablet} {
+        font-size: 14px;
+
+        &:before {
+            width: 14px;
+            height: 14px;
+        }
+    }   
 `;
 
 

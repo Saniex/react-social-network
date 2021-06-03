@@ -11,7 +11,7 @@ const StyledInput = styled.input`
     border-radius: ${({theme}) => theme.radius};
     font-size: 16px;
     color: ${({theme}) => theme.lightText};
-    padding: 0 25px;
+    padding: 0 22x;
     transition: all .3s ease;
 
     &:hover,
@@ -42,6 +42,8 @@ const StyledInput = styled.input`
     }
 
     ${({theme}) => theme.breakpoints.tablet} {
+        height: 40px;
+        font-size: 14px;
         padding: 0 15px;
     }
 `;

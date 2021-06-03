@@ -16,6 +16,7 @@ import ErrorPage from './pages/error/ErrorPage';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import LoginPage from './pages/login/LoginPage';
+import SearchPage from './pages/search/SearchPage';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
 import GlobalStyle from './utils/globalStyle';
@@ -32,7 +33,7 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 90px 25px 25px 25px;
+  padding: 90px 50px 25px 50px;
   margin: 0 0 0 300px;
 
   ${({theme}) => theme.breakpoints.touch} {
@@ -93,6 +94,7 @@ const App = props => {
         <PageWrapper>
           <Switch>
             <Route path="/login" component={LoginPage} />
+            <Route path="/search" component={SearchPage} />
             <Redirect to="/profile" />
           </Switch>
         </PageWrapper>
