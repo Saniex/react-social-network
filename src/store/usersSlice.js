@@ -1,16 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import { setErrorStatus } from './appSlice';
+
 import usersAPI from '../api/usersAPI';
 
 
 
 export const getUsersList = createAsyncThunk(
     'users/getUsersList',
-    async ({ count, page, term, friend }) => {
+    async ({ count, page, term, friend }, { dispatch }) => {
+        try {
+            const usersData = await usersAPI.getUsers(count, page, term, friend);
 
-        const usersData = await usersAPI.getUsers(count, page, term, friend);
-
-        return usersData;
+            return usersData;
+        }
+        catch(error) {
+            dispatch(setErrorStatus(null));
+            throw new Error(error);
+        }
     }
 );
 

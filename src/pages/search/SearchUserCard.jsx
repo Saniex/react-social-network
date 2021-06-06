@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+import checkLength from '../../utils/checkLength';
+
 import avatar from '../../assets/img/avatar.jpg';
 
 
@@ -17,7 +19,9 @@ const Wrapper = styled(NavLink)`
 
 const Name = styled.span`
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow: hidden;
 
     ${({theme}) => theme.breakpoints.tablet} {
         font-size: 16px;
@@ -64,7 +68,7 @@ const UserCard = props => {
                 <img src={photos?.small || avatar} alt="avatar" />
             </Avatar>
             <Name>
-                {name}
+                {checkLength(name, 20)}
             </Name>
         </Wrapper>
     )

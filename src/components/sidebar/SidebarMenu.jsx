@@ -24,6 +24,7 @@ const MenuLink = styled(NavLink)`
     display: flex;
     align-items: center;
     font-size: 18px;
+    font-weight: 600;
     width: 100%;
     border-radius: ${({theme}) => theme.radius};
     padding: 15px 25px;

@@ -41,7 +41,7 @@ const SearchForm = styled.form`
     margin: 0 0 15px 0;
 `;
 
-const InputIcon = styled(Icon)`
+const SearchIcon = styled(Icon)`
     position: absolute;
     top: 50%;
     left: 22px;
@@ -175,7 +175,7 @@ const SearchPanel = props => {
     return (
         <Wrapper>
             <SearchForm onSubmit={handleSubmit(handleSearchForm)}>
-                <InputIcon as={Search} />
+                <SearchIcon as={Search} />
                 <SearchInput
                     {...register('username')}
                     placeholder="Search for users" 

@@ -11,8 +11,7 @@ const StyledInput = styled.input`
     border-radius: ${({theme}) => theme.radius};
     font-size: 16px;
     color: ${({theme}) => theme.lightText};
-    padding: 0 22x;
-    transition: all .3s ease;
+    padding: 0 22px;
 
     &:hover,
     &:focus {

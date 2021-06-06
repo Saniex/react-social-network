@@ -64,13 +64,11 @@ const Wrapper = styled.button`
     }};
 
     ${({outlined}) => outlined && css`
-        background: ${({theme}) => theme.lightBackground};
         border-color: ${({theme}) => theme.border};
+        background: ${({theme}) => theme.lightBackground};
     `};
 
     ${({theme}) => theme.breakpoints.touch} {
-        background: none;
-        padding: 10px;
 
         span {
             display: none;

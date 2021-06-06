@@ -71,6 +71,11 @@ const Actions = styled.div`
 `;
 
 const ActionButton = styled(Button)`
+    
+    ${({theme}) => theme.breakpoints.touch} {
+        padding: 10px;
+        background: none;
+    }
 `;
 
 const MenuButton = styled(ActionButton)`

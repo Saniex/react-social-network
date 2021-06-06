@@ -16,6 +16,7 @@ import ErrorPage from './pages/error/ErrorPage';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import LoginPage from './pages/login/LoginPage';
+import ProfilePage from './pages/profile/ProfilePage';
 import SearchPage from './pages/search/SearchPage';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
@@ -30,6 +31,7 @@ const MainWrapper = styled.div`
 `;
 
 const PageWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -94,6 +96,7 @@ const App = props => {
         <PageWrapper>
           <Switch>
             <Route path="/login" component={LoginPage} />
+            <Route path="/profile/:userID?" component={ProfilePage} />
             <Route path="/search" component={SearchPage} />
             <Redirect to="/profile" />
           </Switch>

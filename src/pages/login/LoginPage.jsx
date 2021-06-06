@@ -139,6 +139,12 @@ const LoginPage = props => {
         authErrorMessage && errorMessageHandler(authErrorMessage);
     }, [authErrorMessage]);
 
+    useEffect(() => {
+        const resetErrorsTimer = errorMessage && setTimeout(resetErrors, 10000);
+
+        return () => clearInterval(resetErrorsTimer);
+    }, [errorMessage]);
+
 
 
     const { register, handleSubmit } = useForm();
@@ -154,7 +160,6 @@ const LoginPage = props => {
 
     const errorMessageHandler = message => {
         setErrorMessage(message);
-        setTimeout(resetErrors, 10000)
     }
 
     const resetErrors = () => {

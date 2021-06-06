@@ -31,7 +31,7 @@ export const getLogIn = createAsyncThunk(
             return logInData;
         }
         catch(error) {
-            setTimeout(() => dispatch(getLogIn(accountData)), 1000);
+            throw new Error(error);
         }
     }
 );
@@ -46,7 +46,7 @@ export const getLogOut = createAsyncThunk(
             return logOutData;
         }
         catch(error) {
-            setTimeout(() => dispatch(getLogOut()), 1000);
+            throw new Error(error);
         }
     }
 );
@@ -118,8 +118,9 @@ const authSlice = createSlice({
             }
             if (payload.resultCode !== 0) state.isFetching = false;
         },
-        [getLogIn.rejected]: state => {
+        [getLogIn.rejected]: (state, { error }) => {
             state.isFetching = false;
+            console.error(error.message);
         },
 
         //@ Get log out
@@ -130,8 +131,9 @@ const authSlice = createSlice({
         [getLogOut.fulfilled]: ( state, { payload } ) => {
             if (payload.resultCode !== 0) state.isFetching = false;
         },
-        [getLogOut.rejected]: state => {
+        [getLogOut.rejected]: (state, { error }) => {
             state.isFetching = false;
+            console.error(error.message);
         },
     }
 });

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import {
-    selectSidebarStatus 
+    selectSidebarStatus
 } from '../../store/appSlice';
 
 import SidebarMenu from './SidebarMenu';
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     border-right: 1px solid ${({theme}) => theme.border};
     padding: 90px 25px 25px 25px;
     transform: translateX(-150%);
-    transition: all .3s ease;
+    transition: transform .3s ease;
     overflow-y: auto;
     overflow-x: hidden;
 
