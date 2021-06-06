@@ -17,6 +17,7 @@ import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import LoginPage from './pages/login/LoginPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import EditPage from './pages/edit/EditPage';
 import SearchPage from './pages/search/SearchPage';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
@@ -60,7 +61,7 @@ const App = props => {
 
   const dispatch = useDispatch();
 
-  const AppTheme = useSelector(selectAppTheme);
+  const appTheme = useSelector(selectAppTheme);
   const isAppInit = useSelector(selectAppInitStatus);
   const isAppError = useSelector(selectAppErrorStatus);
   const appErrorMessage = useSelector(selectAppErrorMessage);
@@ -74,21 +75,21 @@ const App = props => {
 
 
   if (isAppError) return (
-    <ThemeProvider theme={pickTheme(AppTheme)}>
+    <ThemeProvider theme={pickTheme(appTheme)}>
       <GlobalStyle />
       <ErrorPage message={appErrorMessage} />
     </ThemeProvider>
   )
 
   if (!isAppInit) return (
-    <ThemeProvider theme={pickTheme(AppTheme)}>
+    <ThemeProvider theme={pickTheme(appTheme)}>
       <GlobalStyle />
       <Preloader main />
     </ThemeProvider>
   )
 
   return (
-    <ThemeProvider theme={pickTheme(AppTheme)}>
+    <ThemeProvider theme={pickTheme(appTheme)}>
       <GlobalStyle />
       <MainWrapper>
         <Header />
@@ -96,6 +97,7 @@ const App = props => {
         <PageWrapper>
           <Switch>
             <Route path="/login" component={LoginPage} />
+            <Route path="/profile/edit" component={EditPage} />
             <Route path="/profile/:userID?" component={ProfilePage} />
             <Route path="/search" component={SearchPage} />
             <Redirect to="/profile" />

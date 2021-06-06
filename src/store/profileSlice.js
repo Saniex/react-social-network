@@ -22,6 +22,20 @@ export const getUserInfo = createAsyncThunk(
     }
 );
 
+export const putUserInfo = createAsyncThunk(
+    'profile/putUserInfo',
+    async profileInfo => {
+        try {
+            const profileData = await profileAPI.setProfile(profileInfo);
+
+            return profileData;
+        }
+        catch(error) {
+            throw new Error(error);
+        }
+    }
+);
+
 export const getUserStatus = createAsyncThunk(
     'profile/getUserStatus',
     async (ID, { dispatch }) => {
@@ -32,6 +46,34 @@ export const getUserStatus = createAsyncThunk(
         }
         catch(error) {
             dispatch(setErrorStatus(null));
+            throw new Error(error);
+        }
+    }
+);
+
+export const putUserStatus = createAsyncThunk(
+    'profile/putUserStatus',
+    async status => {
+        try {
+            const statusData = await profileAPI.setStatus(status);
+    
+            return statusData;
+        }
+        catch(error) {
+            throw new Error(error);
+        }
+    }
+);
+
+export const putProfilePhoto = createAsyncThunk(
+    'profile/putProfilePhoto',
+    async photo => {
+        try {
+            const photoData = await profileAPI.setPhoto(photo);
+    
+            return photoData;
+        }
+        catch(error) {
             throw new Error(error);
         }
     }
@@ -76,6 +118,12 @@ const profileSlice = createSlice({
             console.error(error.message);
         },
 
+        // Put user profile
+
+        [putUserInfo.fulfilled]: (state, { payload }) => {
+            
+        },
+
         // Get user status
 
         [getUserStatus.fulfilled]: (state, { payload }) => {
@@ -85,7 +133,13 @@ const profileSlice = createSlice({
             console.error(error.message);
         },
 
-        // getUserProfileData
+        // Put user status
+
+        [putUserStatus.fulfilled]: (state, { payload }) => {
+            
+        },
+
+        // Get user profile data
 
         [getUserProfileData.pending]: state => {
             state.isFetching = true;
@@ -98,7 +152,12 @@ const profileSlice = createSlice({
             state.isFetching = false;
             console.error(error.message);
         },
-        
+
+        // Put profile photo
+
+        [putProfilePhoto.fulfilled]: (state, { payload }) => {
+            
+        }
     }
 });
 

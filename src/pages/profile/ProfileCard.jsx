@@ -269,7 +269,7 @@ const Card = props => {
                         isAuth && !pageID ?
 
                         <Actions>
-                            <Button as={NavLink} to="/profile/edit" color="blue">
+                            <Button as={NavLink} to="/profile/edit" color="blue" style={{minWidth: '150px'}}>
                                 Edit profile
                             </Button>
                         </Actions> :

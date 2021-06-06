@@ -1,7 +1,11 @@
 import { forwardRef } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import check from '../assets/icons/check.svg';
+import { selectAppTheme } from '../store/appSlice';
+
+import lightCheck from '../assets/icons/check-light.svg';
+import darkCheck from '../assets/icons/check-dark.svg';
 
 
 
@@ -11,7 +15,7 @@ const Wrapper = styled.div`
     background: ${({theme}) => theme.lightBackground};
 
     input:checked + label:before {
-        background-image: url(${check});
+        background-image: ${({appTheme}) => appTheme === 'light' ? `url(${lightCheck})` : `url(${darkCheck})`};
         background-position: center;
         background-size: contain;
     }
@@ -54,10 +58,15 @@ const Label = styled.label`
 
 
 const Checkbox = forwardRef((props, ref) => {
+
     const { id, label } = props;
 
+    const appTheme = useSelector(selectAppTheme);
+
+
+
     return (
-        <Wrapper>
+        <Wrapper appTheme={appTheme}>
             <StyledCheckbox ref={ref} {...props} type="checkbox" />
             <Label htmlFor={id}>{label}</Label>
         </Wrapper>

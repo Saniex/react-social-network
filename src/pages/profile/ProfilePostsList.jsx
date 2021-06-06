@@ -8,10 +8,10 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 18px;
     padding: 25px;
 
     ${({theme}) => theme.breakpoints.tablet} {
+        font-size: 14px;
         padding: 15px;
     } 
 `;
