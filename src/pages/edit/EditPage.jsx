@@ -11,16 +11,18 @@ import EditProfile from './EditProfile';
 
 
 const Section = styled.div`
-    
-    &:not(:last-child) {
-        border-bottom: 1px solid ${({ theme }) => theme.border};
-        padding: 0 0 50px 0;
-        margin: 0 0 50px 0;
+    border-bottom: 1px solid ${({ theme }) => theme.border};
+    padding: 0 0 50px 0;
+    margin: 0 0 50px 0;
 
-        ${({theme}) => theme.breakpoints.tablet} {
-            padding: 0 0 25px 0;
-            margin: 0 0 25px 0;
-        }
+    &:last-child {
+        margin: 0;
+        border: none;
+    }
+
+    ${({theme}) => theme.breakpoints.tablet} {
+        padding: 0 0 25px 0;
+        margin: 0 0 25px 0;
     }
 `;
 
@@ -34,7 +36,6 @@ const Title = styled.h2`
 
 
 const EditPage = props => {
-
     const isAuth = useSelector(selectAuthStatus);
 
 

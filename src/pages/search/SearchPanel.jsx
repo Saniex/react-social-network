@@ -93,7 +93,6 @@ const InputWrapper = styled.div`
 
 
 const SearchPanel = props => {
-
     const dispatch = useDispatch();
 
     const isUsersFetching = useSelector(selectUsersFetchingStatus);
@@ -116,6 +115,12 @@ const SearchPanel = props => {
     }, []);
 
     useEffect(() => {
+        document.addEventListener('scroll', handleSearchPageScroll);
+
+        return () => document.removeEventListener('scroll', handleSearchPageScroll);
+    }, [usersTotalCount, usersList]);
+
+    useEffect(() => {
         !isUsersFetching && isLoading && changeLoadingStatus(isUsersFetching);
     }, [isUsersFetching]);
 
@@ -128,20 +133,9 @@ const SearchPanel = props => {
         changeLoadingStatus(true);
     }, [count, term, friend]);
 
-    useEffect(() => {
-        document.addEventListener('scroll', handleSearchListScroll);
-
-        return () => document.removeEventListener('scroll', handleSearchListScroll);
-    }, [usersTotalCount, usersList]);
-
     
 
-    const handleSearchListScroll = e => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && 
-            usersTotalCount > usersList.length) {
-            changeLoadingStatus(true);
-        }
-    }
+    // Service functions
 
     const requestUsers = () => {
         dispatch(getUsersList({count, page, term, friend}));
@@ -152,8 +146,21 @@ const SearchPanel = props => {
         dispatch(cleanUsersList());
         setPage(1);
     }
+
+
+
+    // Scroll handler
+
+    const handleSearchPageScroll = e => {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && 
+            usersTotalCount > usersList.length) {
+            changeLoadingStatus(true);
+        }
+    }
     
 
+
+    // Option handlers
 
     const handleSelect = e => {
         setCount(e.currentTarget.value);
@@ -166,15 +173,17 @@ const SearchPanel = props => {
 
 
 
+    // Form handlers
+
     const { register, handleSubmit } = useForm();
     
-    const handleSearchForm = formData => setTerm(formData.username);
+    const searchFormHandler = formData => setTerm(formData.username);
 
 
 
     return (
         <Wrapper>
-            <SearchForm onSubmit={handleSubmit(handleSearchForm)}>
+            <SearchForm onSubmit={handleSubmit(searchFormHandler)}>
                 <SearchIcon as={Search} />
                 <SearchInput
                     {...register('username')}

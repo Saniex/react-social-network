@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { setErrorStatus } from './appSlice';
-
 import followAPI from '../api/followAPI';
 
 

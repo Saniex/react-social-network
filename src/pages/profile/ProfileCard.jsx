@@ -39,7 +39,6 @@ const Wrapper = styled.div`
     box-shadow: 0 3px 4px rgb(58 46 68 / 4%);
     border-radius: 5px;
     margin: 0 0 25px 0;
-
     ${({theme}) => theme.breakpoints.tablet} {
         text-align: center;
         margin: 0 0 15px 0;
@@ -50,7 +49,6 @@ const Content = styled.div`
     display: flex;
     width: 100%;
     padding: 25px;
-
     ${({theme}) => theme.breakpoints.tablet} {
         flex-direction: column;
         align-items: center;
@@ -61,7 +59,6 @@ const Content = styled.div`
 const Avatar = styled.div`
     flex: 0 0 150px;
     margin: 0 25px 0 0;
-
     img {
         max-width: 100%;
         width: 150px;
@@ -69,11 +66,9 @@ const Avatar = styled.div`
         border-radius: 50%;
         border: 4px solid ${({ theme }) => theme.border};
     }
-
     ${({theme}) => theme.breakpoints.tablet} {
         flex: 0 0 120px;
         margin: 0 0 25px 0;
-
         img {
             width: 120px;
             height: 120px;
@@ -85,7 +80,6 @@ const Info = styled.div`
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-
     ${({theme}) => theme.breakpoints.tablet} {
         width: 100%;
     }
@@ -94,11 +88,9 @@ const Info = styled.div`
 const Section = styled.div`
     display: flex;
     margin: 0 0 10px 0;
-
     &:last-child {
         margin: 0;
     }
-
     ${({theme}) => theme.breakpoints.tablet} {
         flex-direction: column;
         margin: 0 0 15px 0;
@@ -109,7 +101,6 @@ const Title = styled.h2`
     flex: 0 0 150px;
     margin: 0 15px 0 0;
     color: ${({theme}) => theme.lightText};
-
     ${({theme}) => theme.breakpoints.tablet} {
         flex: 1 1 auto;
         font-size: 14px;
@@ -122,7 +113,6 @@ const Description = styled.p`
     flex: 1 1 auto;
     font-weight: 400;
     line-height: 1.1;
-
     ${({theme}) => theme.breakpoints.tablet} {
         font-size: 14px;
         text-align: left;
@@ -132,7 +122,6 @@ const Description = styled.p`
 const Status = styled(Description)`
     font-size: 18px;
     color: ${({theme}) => theme.lightText};
-
     ${({theme}) => theme.breakpoints.tablet} {
         font-size: 16px;
         text-align: center;
@@ -145,11 +134,9 @@ const FullName = styled.span`
     line-height: 1.2;
     margin: 0 0 25px 0;
     overflow: hidden;
-
     &:last-child {
         margin: 0;
     }
-
     ${({theme}) => theme.breakpoints.tablet} {
         font-size: 20px;
     }
@@ -162,7 +149,6 @@ const BottomSection = styled.div`
     width: 100%;
     padding: 15px 25px;
     border-top: 1px solid ${({ theme }) => theme.border};
-
     ${({theme}) => theme.breakpoints.tablet} {
         flex-direction: column;
         padding: 15px;
@@ -180,11 +166,9 @@ const Contacts = styled.div`
     justify-content: flex-end;
     align-items: center;
     margin: 0 0 0 25px;
-
     &:first-child {
         margin: 0;
     }
-
     ${({theme}) => theme.breakpoints.tablet} {
         margin: 15px 0 0 0;
     }
@@ -193,7 +177,6 @@ const Contacts = styled.div`
 
 
 const Card = props => {
-
     const { isAuth, pageID } = props;
 
     const profileStatus = useSelector(selectProfileStatus);
@@ -209,6 +192,7 @@ const Card = props => {
         contacts
     } = profileData;
 
+    
 
     return (
         <Wrapper>

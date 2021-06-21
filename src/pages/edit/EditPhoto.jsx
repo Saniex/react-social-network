@@ -19,7 +19,6 @@ const Form = styled.form`
 const File = styled.div`
     display: flex;
     align-items: center;
-    margin: 0 0 25px 0;
 
     input {
         display: none;
@@ -47,7 +46,6 @@ const File = styled.div`
     }
 
     ${({theme}) => theme.breakpoints.tablet} {
-        margin: 0 0 15px 0;
 
         label {
             height: 40px;
@@ -57,12 +55,16 @@ const File = styled.div`
 
 const EditButton = styled(Button)`
     max-width: 150px;
+    margin: 25px 0 0 0;
+
+    ${({theme}) => theme.breakpoints.tablet} {
+        margin: 15px 0 0 0;
+    }
 `;
 
 
 
 const Status = props => {
-
     const dispatch = useDispatch();
 
     const [fileName, setFileName] = useState('');
@@ -71,9 +73,9 @@ const Status = props => {
 
 
 
+    // Photo form handlers
+
     const { register, handleSubmit } = useForm();
-
-
 
     const handlePhotoFormSubmit = formData => {
         const photoData = new FormData();
@@ -106,9 +108,13 @@ const Status = props => {
                     {checkLength(fileName, 16)}
                 </span>
             </File>
-            <EditButton color="green">
-                Submit
-            </EditButton>
+            {
+                fileName &&
+
+                <EditButton color="green">
+                    Submit
+                </EditButton>
+            }
         </Form>
     )
 }

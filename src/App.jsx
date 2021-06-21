@@ -58,7 +58,6 @@ const pickTheme = theme => {
 
 
 const App = props => {
-
   const dispatch = useDispatch();
 
   const appTheme = useSelector(selectAppTheme);

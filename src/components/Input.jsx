@@ -48,11 +48,13 @@ const StyledInput = styled.input`
 `;
 
 
+
 const Input = forwardRef((props, ref) => {
     return (
         <StyledInput ref={ref} {...props} />
     )
 });
+
 
 
 export default Input;

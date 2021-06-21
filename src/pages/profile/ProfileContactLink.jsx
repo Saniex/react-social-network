@@ -29,12 +29,7 @@ const ContactIcon = styled(Icon)`
 
 
 
-const ContactLink = props => {
-
-    const { href } = props;
-
-    
-
+const ContactLink = ({ href, ...props }) => {
     return (
         <>
             {   

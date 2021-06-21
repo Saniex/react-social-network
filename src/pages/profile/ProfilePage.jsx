@@ -23,7 +23,6 @@ import PostsList from './ProfilePostsList';
 
 
 const ProfilePage = props => {
-
     const dispatch = useDispatch();
     
     const isProfileInit = useSelector(selectProfileInitStatus);
@@ -47,7 +46,12 @@ const ProfilePage = props => {
 
     if (pageID == userData.id) return <Redirect to="/profile" />
 
-    if (!isProfileInit || isProfileFetching) return <Preloader />
+    if (
+        !isProfileInit || 
+        isProfileFetching.profile ||
+        isProfileFetching.status ||
+        isProfileFetching.photo
+    ) return <Preloader />
 
     return (
         <>  

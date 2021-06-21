@@ -44,7 +44,7 @@ const LoginForm = styled.form`
 
     ${({theme}) => theme.breakpoints.tablet} {
         max-width: 350px;
-        padding: 40px 25px;
+        padding: 40px 15px;
     }
 `;
 
@@ -80,6 +80,7 @@ const LoginButton = styled.button`
     margin: 0 0 25px 0;
 
     ${({theme}) => theme.breakpoints.tablet} {
+        font-size: 14px;
         min-height: 40px;
     }
 `;
@@ -122,7 +123,6 @@ const loginFormSchema = yup.object().shape({
 
 
 const LoginPage = props => {
-
     const dispatch = useDispatch();
 
     const isAuth = useSelector(selectAuthStatus);
@@ -147,9 +147,9 @@ const LoginPage = props => {
 
 
 
+    // Login form handlers
+
     const { register, handleSubmit } = useForm();
-
-
 
     const loginFormHandler = formData => {
         resetErrors();
@@ -157,6 +157,10 @@ const LoginPage = props => {
             .then(() => dispatch(getLogIn(formData)))
             .catch(error => errorMessageHandler(error.message));
     };
+
+
+
+    // Service functions
 
     const errorMessageHandler = message => {
         setErrorMessage(message);

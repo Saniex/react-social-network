@@ -69,6 +69,7 @@ const Wrapper = styled.button`
     `};
 
     ${({theme}) => theme.breakpoints.touch} {
+        font-size: 14px;
 
         span {
             display: none;

@@ -26,7 +26,9 @@ const appSlice = createSlice({
     },
     reducers: {
         setTheme: state => {
-            state.theme = state.theme === 'light' ? 'dark' : 'light';
+            const currentTheme = state.theme === 'light' ? 'dark' : 'light';
+            state.theme = currentTheme;
+            localStorage.setItem('theme', currentTheme);
         },
         setSidebarStatus: state => {
             state.isSidebarOpen = state.isSidebarOpen ? false : true;

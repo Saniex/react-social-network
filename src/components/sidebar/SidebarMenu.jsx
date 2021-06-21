@@ -56,7 +56,6 @@ const MenuIcon = styled(Icon)`
 
 
 const SidebarMenu = ({ isSidebarOpen }) => {
-
     const dispatch = useDispatch();
 
     const sidebarHandler = () => isSidebarOpen && dispatch(setSidebarStatus());

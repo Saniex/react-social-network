@@ -8,8 +8,10 @@ import {
 } from '../../store/usersSlice';
 
 import Preloader from '../../components/Preloader';
+import Message from '../../components/Message';
 
 import UserCard from './SearchUserCard';
+
 
 
 const Wrapper = styled.div`
@@ -22,12 +24,13 @@ const Wrapper = styled.div`
 
 
 const UsersList = props => {
-
     const usersList = useSelector(selectUsersList);
     const isUsersFetching = useSelector(selectUsersFetchingStatus);
     const isUsersInit = useSelector(selectUsersInitStatus);
 
 
+    
+    // Serice functions 
 
     const makeUserCards = users => {
         return users.map(user => (
@@ -51,9 +54,9 @@ const UsersList = props => {
 
                 (isUsersInit && usersList.length === 0) ?
 
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flex: '1 1 auto'}}>
+                <Message>
                     Users is not found
-                </div> :
+                </Message> :
 
                 null
             }

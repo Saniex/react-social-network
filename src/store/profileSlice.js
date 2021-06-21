@@ -96,8 +96,12 @@ const profileSlice = createSlice({
     name: 'profile',
     initialState: {
         profileData: {},
-        profileStatus: null,
-        isFetching: false,
+        profileStatus: '',
+        isFetching: {
+            profile: false,
+            status: false,
+            photo: false
+        },
         isInit: false
     },
     reducers: {
@@ -114,14 +118,21 @@ const profileSlice = createSlice({
         [getUserInfo.fulfilled]: (state, { payload }) => {
             state.profileData = payload;
         },
-        [getUserInfo.rejected]: (_, { error }) => {
+        [getUserInfo.rejected]: (state, { error }) => {
             console.error(error.message);
         },
 
         // Put user profile
 
-        [putUserInfo.fulfilled]: (state, { payload }) => {
-            
+        [putUserInfo.pending]: state => {
+            state.isFetching.profile = true;
+        },
+        [putUserInfo.fulfilled]: state => {
+            state.isFetching.profile = false;
+        },
+        [putUserInfo.rejected]: (state, { error }) => {
+            state.isFetching.profile = false;
+            console.error(error.message);
         },
 
         // Get user status
@@ -135,28 +146,42 @@ const profileSlice = createSlice({
 
         // Put user status
 
-        [putUserStatus.fulfilled]: (state, { payload }) => {
-            
+        [putUserStatus.pending]: state => {
+            state.isFetching.status = true;
+        },
+        [putUserStatus.fulfilled]: state => {
+            state.isFetching.status = false;
+        },
+        [putUserStatus.rejected]: (state, { error }) => {
+            state.isFetching.status = false;
+            console.error(error.message);
         },
 
         // Get user profile data
 
         [getUserProfileData.pending]: state => {
-            state.isFetching = true;
+            state.isFetching.profile = true;
         },
         [getUserProfileData.fulfilled]: state => {
-            state.isFetching = false;
+            state.isFetching.profile = false;
             state.isInit = true;
         },
         [getUserProfileData.rejected]: (state, { error }) => {
-            state.isFetching = false;
+            state.isFetching.profile = false;
             console.error(error.message);
         },
 
         // Put profile photo
 
-        [putProfilePhoto.fulfilled]: (state, { payload }) => {
-            
+        [putProfilePhoto.pending]: state => {
+            state.isFetching.photo = true;
+        },
+        [putProfilePhoto.fulfilled]: state => {
+            state.isFetching.photo = false;
+        },
+        [putProfilePhoto.rejected]: (state, { error }) => {
+            state.isFetching.photo = false;
+            console.error(error.message);
         }
     }
 });

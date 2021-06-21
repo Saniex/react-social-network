@@ -89,7 +89,6 @@ const MenuButton = styled(ActionButton)`
 
 
 const Header = props => {
-
     const dispatch = useDispatch();
 
     const isAuth = useSelector(selectAuthStatus);
@@ -97,6 +96,8 @@ const Header = props => {
     const isSidebarOpen = useSelector(selectSidebarStatus);
 
 
+
+    // Handlers
 
     const menuButtonHandler = () => dispatch(setSidebarStatus());
 

@@ -21,15 +21,14 @@ const Wrapper = styled(Button)`
 
 
 
-const FollowButton = props => {
-
-    const { userID, isFollowed } = props;
-
+const FollowButton = ({ userID, isFollowed }) => {
     const dispatch = useDispatch();
 
     const isFollowFetching = useSelector(selectFollowFetchingStatus);
 
 
+
+    // Service functions
 
     const checkFollowFetchingStatus = () => isFollowFetching.some(ID => ID === userID);
 

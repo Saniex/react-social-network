@@ -44,18 +44,17 @@ const schema = yup
 
 
 const Status = props => {
-
     const dispatch = useDispatch();
 
     const [errorMessage, setErrorMessage] = useState('');
 
 
 
+    // Status form handlers
+
     const { register, handleSubmit } = useForm();
 
-
-
-    const handleStatusForm = ({ statusText }) => {
+    const statusFormHandler = ({ statusText }) => {
         schema.validate(statusText)
             .then(() => {
                 dispatch(putUserStatus(statusText));
@@ -69,7 +68,7 @@ const Status = props => {
 
 
     return (
-        <Form onSubmit={handleSubmit(handleStatusForm)}>
+        <Form onSubmit={handleSubmit(statusFormHandler)}>
             <Input
                 {...register('statusText')}
                 placeholder="What's your mind?"

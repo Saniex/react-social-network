@@ -53,14 +53,9 @@ const Avatar = styled.div`
 
 
 const UserCard = props => {
+    const { id, name, photos } = props.user;
 
-    const {
-        id,
-        name,
-        photos
-    } = props.user;
-
-
+    
 
     return (
         <Wrapper to={`/profile/${id}`}>

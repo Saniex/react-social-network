@@ -6,6 +6,7 @@ import {
 } from '../../store/appSlice';
 
 import SidebarMenu from './SidebarMenu';
+import ThemeToggler from './SidebarThemeToggler';
 
 
 
@@ -50,6 +51,10 @@ const Section = styled.div`
     padding: 0 0 25px 0;
     margin: 0 0 25px 0;
 
+    &:last-child {
+        border: none;
+    }
+
     ${({theme}) => theme.breakpoints.touch} {
         padding: 0 0 15px 0;
         margin: 0 0 15px 0;
@@ -59,7 +64,6 @@ const Section = styled.div`
 
 
 const Sidebar = props => {
-
     const isSidebarOpen = useSelector(selectSidebarStatus);
 
 
@@ -68,6 +72,9 @@ const Sidebar = props => {
         <Wrapper isSidebarOpen={isSidebarOpen}>
             <Section>
                 <SidebarMenu isSidebarOpen={isSidebarOpen} />
+            </Section>
+            <Section>
+                <ThemeToggler />
             </Section>
         </Wrapper>
     )

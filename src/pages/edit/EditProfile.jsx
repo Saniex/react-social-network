@@ -65,16 +65,17 @@ let schema = yup.object().shape({
 
 
 const Profile = props => {
-
     const dispatch = useDispatch();
 
     const [errorMessage, setErrorMessage] = useState('');
 
-    const { register, handleSubmit } = useForm();
 
 
+    // Profile form handlers
 
-    const handleProfileForm = formData => {
+    const { register, handleSubmit } = useForm();    
+
+    const profileFormHandler = formData => {
         const {
             fullName,
             aboutMe,
@@ -117,7 +118,7 @@ const Profile = props => {
 
 
     return (
-        <Form onSubmit={handleSubmit(handleProfileForm)}>
+        <Form onSubmit={handleSubmit(profileFormHandler)}>
             <div>
                 <EditInput
                     {...register('fullName')}

@@ -36,7 +36,7 @@ export const darkTheme = {
     mainText: '#f1f1f1',
     lightText: '#cacaca',
     border: '#30363d',
-    red: 'rgba(220, 38, 38, 0.1)',
-    green: 'rgba(5, 150, 104, 0.1)',
-    blue: 'rgba(37, 100, 235, 0.1)',
+    red: 'rgba(220, 38, 38, 0.2)',
+    green: 'rgba(5, 150, 104, 0.2)',
+    blue: 'rgba(37, 100, 235, 0.2)',
 }

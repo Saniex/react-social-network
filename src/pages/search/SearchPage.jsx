@@ -3,9 +3,7 @@ import UsersList from './SearchUsersList';
 
 
 
-const UsersPage = props => {
-
-
+const SearchPage = props => {
     return (
         <>
             <SearchPanel />
@@ -16,4 +14,4 @@ const UsersPage = props => {
 
 
 
-export default UsersPage;
+export default SearchPage;
