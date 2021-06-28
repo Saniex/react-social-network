@@ -12,7 +12,6 @@ import darkCheck from '../assets/icons/check-dark.svg';
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
-    background: ${({theme}) => theme.lightBackground};
 
     input:checked + label:before {
         background-image: ${({appTheme}) => appTheme === 'light' ? `url(${lightCheck})` : `url(${darkCheck})`};
@@ -41,6 +40,7 @@ const Label = styled.label`
         display: inline-block;
         width: 16px;
         height: 16px;
+        background: ${({theme}) => theme.lightBackground};
         border: 2px solid ${({theme}) => theme.border};
         border-radius: 2px;
     }

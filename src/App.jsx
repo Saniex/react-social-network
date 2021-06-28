@@ -22,6 +22,7 @@ import SearchPage from './pages/search/SearchPage';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
 import GlobalStyle from './utils/globalStyle';
+import ChatPage from './pages/chat/ChatPage';
 
 
 
@@ -98,6 +99,7 @@ const App = props => {
             <Route path="/login" component={LoginPage} />
             <Route path="/profile/edit" component={EditPage} />
             <Route path="/profile/:userID?" component={ProfilePage} />
+            <Route path="/chat" component={ChatPage} />
             <Route path="/search" component={SearchPage} />
             <Redirect to="/profile" />
           </Switch>

@@ -24,10 +24,10 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 100px 0px 100px 0px;
+    padding: 75px 0;
 
     ${({theme}) => theme.breakpoints.tablet} {
-        padding: 50px 0px 50px 0px;
+        padding: 50px 0;
     }
 `;
 
@@ -37,8 +37,6 @@ const LoginForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: ${({theme}) => theme.lightBackground};
-    border: 1px solid ${({theme}) => theme.border};
     border-radius: ${({theme}) => theme.radius};
     padding: 50px;
 
