@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { selectAppTheme } from '../store/appSlice';
+import { selectAppTheme } from '../store/slices/appSlice';
 
 import lightCheck from '../assets/icons/check-light.svg';
 import darkCheck from '../assets/icons/check-dark.svg';

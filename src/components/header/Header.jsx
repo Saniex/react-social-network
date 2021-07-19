@@ -5,13 +5,17 @@ import styled from 'styled-components';
 import { 
     selectSidebarStatus,
     setSidebarStatus 
-} from '../../store/appSlice';
+} from '../../store/slices/appSlice';
 
 import {
     getLogOut,
     selectAuthFetchingStatus,
     selectAuthStatus 
-} from '../../store/authSlice';
+} from '../../store/slices/authSlice';
+
+import {
+    authActionCreators
+} from '../../store/sagas/authSaga';
 
 import Button from '../Button';
 import Icon from '../Icon';
@@ -101,7 +105,7 @@ const Header = props => {
 
     const menuButtonHandler = () => dispatch(setSidebarStatus());
 
-    const handleLogOut = () => dispatch(getLogOut());
+    const handleLogOut = () => dispatch(authActionCreators.getLogOut());
 
     const sidebarHandler = () => isSidebarOpen && dispatch(setSidebarStatus());
 

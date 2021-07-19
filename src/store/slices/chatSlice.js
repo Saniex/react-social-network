@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { setErrorStatus } from './appSlice';
+import { setAppErrorStatus } from './appSlice';
 
 
 
@@ -18,7 +18,7 @@ export const createChatWebSocket = createAsyncThunk(
             dispatch(setMessages(newMessages));
         }
 
-        socket.onerror = () => dispatch(setErrorStatus()); 
+        socket.onerror = () => dispatch(setAppErrorStatus(true)); 
     }
 );
 

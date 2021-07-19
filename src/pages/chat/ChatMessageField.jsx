@@ -4,8 +4,6 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import { sendMessage } from '../../store/chatSlice';
-
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -53,9 +51,8 @@ const MessageField = props => {
     const messageFormHandler = ({ messageText }) => {
         schema.validate(messageText)
             .then(() => {
-                dispatch(sendMessage(messageText));
                 messageForm.current.reset();
-            })
+            });
     }
 
 

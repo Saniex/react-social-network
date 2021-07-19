@@ -1,19 +1,21 @@
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, withRouter } from 'react-router';
-import { compose } from 'redux';
+import { Redirect } from 'react-router';
 
 import {
     clearProfileData,
-    getUserProfileData,
     selectProfileFetchingStatus,
     selectProfileInitStatus
-} from '../../store/profileSlice';
+} from '../../store/slices/profileSlice';
+
+import {
+    profileActionCreators
+} from '../../store/sagas/profileSaga';
 
 import { 
     selectAuthStatus,
     selectCurrentUserData
-} from '../../store/authSlice';
+} from '../../store/slices/authSlice';
 
 import Preloader from '../../components/Preloader';
 
@@ -35,7 +37,7 @@ const ProfilePage = props => {
 
 
     useLayoutEffect(() => {
-        (pageID || isAuth) && dispatch(getUserProfileData(pageID || userData.id));
+        (pageID || isAuth) && dispatch(profileActionCreators.getUserProfile(pageID || userData.id));
 
         return () => dispatch(clearProfileData());
     }, [pageID]);
@@ -63,6 +65,4 @@ const ProfilePage = props => {
 
 
 
-export default compose(
-    withRouter
-)(ProfilePage);
+export default ProfilePage;

@@ -7,11 +7,11 @@ import checkLength from '../../utils/checkLength';
 import {
     selectProfileData,
     selectProfileStatus
-} from '../../store/profileSlice';
+} from '../../store/slices/profileSlice';
 
 import { 
     selectFollowStatus 
-} from '../../store/followSlice';
+} from '../../store/slices/followSlice';
 
 import Button from '../../components/Button';
 

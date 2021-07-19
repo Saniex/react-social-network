@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 import {
     setSidebarStatus
-} from '../../store/appSlice';
+} from '../../store/slices/appSlice';
 
 import Icon from '../Icon';
 
 import { ReactComponent as User } from '../../assets/icons/user.svg';
-import { ReactComponent as Chat } from '../../assets/icons/chat.svg';
 import { ReactComponent as Search } from '../../assets/icons/search.svg';
 
 
@@ -68,12 +67,6 @@ const SidebarMenu = ({ isSidebarOpen }) => {
                 <MenuLink exact to="/profile" activeClassName="active" onClick={sidebarHandler}>
                     <MenuIcon as={User} />
                     <span>Profile</span>
-                </MenuLink>
-            </li>
-            <li>
-                <MenuLink to="/chat" activeClassName="active" onClick={sidebarHandler}>
-                    <MenuIcon as={Chat} />
-                    <span>Chat</span>
                 </MenuLink>
             </li>
             <li>

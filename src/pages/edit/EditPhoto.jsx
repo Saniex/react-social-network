@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import checkLength from '../../utils/checkLength';
 
-import { putProfilePhoto } from '../../store/profileSlice';
+import { profileActionCreators } from '../../store/sagas/profileSaga';
 
 import Button from '../../components/Button';
 
@@ -81,7 +81,7 @@ const Status = props => {
         const photoData = new FormData();
         const image = formData.photo[0];
         photoData.append('image', image);
-        dispatch(putProfilePhoto(photoData));
+        dispatch(profileActionCreators.updateUserPhoto(photoData));
         setFileName('');
     }
 

@@ -5,7 +5,7 @@ import {
     selectUsersFetchingStatus, 
     selectUsersList,
     selectUsersInitStatus
-} from '../../store/usersSlice';
+} from '../../store/slices/usersSlice';
 
 import Preloader from '../../components/Preloader';
 import Message from '../../components/Message';
@@ -42,7 +42,7 @@ const UsersList = props => {
 
     return (
         <Wrapper>
-            { makeUserCards(usersList) }
+            { isUsersInit ? makeUserCards(usersList) : null }
             { 
                 (isUsersFetching && usersList.length === 0) ?
 

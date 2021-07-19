@@ -2,7 +2,7 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { selectAuthStatus } from '../../store/authSlice';
+import { selectAuthStatus } from '../../store/slices/authSlice';
 
 import EditStatus from './EditStatus';
 import EditPhoto from './EditPhoto';

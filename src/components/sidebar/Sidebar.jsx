@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import {
     selectSidebarStatus
-} from '../../store/appSlice';
+} from '../../store/slices/appSlice';
 
 import SidebarMenu from './SidebarMenu';
 import ThemeToggler from './SidebarThemeToggler';

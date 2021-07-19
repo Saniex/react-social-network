@@ -1,13 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import createSagaMiddleware from '@redux-saga/core';
 
-import appSlice from './appSlice';
-import authSlice from './authSlice';
-import followSlice from './followSlice';
-import profileSlice from './profileSlice';
-import usersSlice from './usersSlice';
-import chatSlice from './chatSlice';
+import appSlice from './slices/appSlice';
+import authSlice from './slices/authSlice';
+import followSlice from './slices/followSlice';
+import profileSlice from './slices/profileSlice';
+import usersSlice from './slices/usersSlice';
+import chatSlice from './slices/chatSlice';
+
+import rootSaga from './sagas/rootSaga';
 
 
+
+const sagaMiddleware = createSagaMiddleware();
 
 export default configureStore({
     reducer: {
@@ -17,5 +22,8 @@ export default configureStore({
         users: usersSlice,
         follow: followSlice,
         chat: chatSlice
-    }
+    },
+    middleware: [...getDefaultMiddleware(), sagaMiddleware]
 });
+
+sagaMiddleware.run(rootSaga);

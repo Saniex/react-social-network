@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { 
-    getUserFollow, 
-    getUserUnfollow, 
+import {
     selectFollowFetchingStatus
-} from '../../store/followSlice';
+} from '../../store/slices/followSlice';
+
+import {
+    followActionCreators
+} from '../../store/sagas/followSaga';
 
 import Button from '../../components/Button'
 
@@ -41,15 +43,15 @@ const FollowButton = ({ userID, isFollowed }) => {
 
                 <Wrapper
                     color="green"
-                    disabled={checkFollowFetchingStatus(userID)} 
-                    onClick={() => dispatch(getUserUnfollow(userID))}>
+                    disabled={checkFollowFetchingStatus(userID)}
+                    onClick={() => dispatch(followActionCreators.getUserUnfollow(userID))}>
                     Followed
                 </Wrapper> :
 
                 <Wrapper
                     color="red"
-                    disabled={checkFollowFetchingStatus(userID)} 
-                    onClick={() => dispatch(getUserFollow(userID))}>
+                    disabled={checkFollowFetchingStatus(userID)}
+                    onClick={() => dispatch(followActionCreators.getUserFollow(userID))}>
                     Unfollowed
                 </Wrapper>
             }

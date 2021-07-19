@@ -5,11 +5,7 @@ import styled from 'styled-components';
 import { 
     selectAuthStatus,
     selectCurrentUserData 
-} from '../../store/authSlice';
-
-import { 
-    selectChatMessages 
-} from '../../store/chatSlice';
+} from '../../store/slices/authSlice';
 
 import Message from './ChatMessage';
 
@@ -35,7 +31,6 @@ const Wrapper = styled.div`
 
 
 const MessagesList = props => {
-    const chatMessages = useSelector(selectChatMessages);
     const userData = useSelector(selectCurrentUserData);
     const isAuth = useSelector(selectAuthStatus);
 
@@ -45,7 +40,7 @@ const MessagesList = props => {
 
     useLayoutEffect(() => {
         if (isAuth) list.current.scrollTop =  list.current.scrollHeight;
-    }, [chatMessages]);
+    }, []);
 
 
 

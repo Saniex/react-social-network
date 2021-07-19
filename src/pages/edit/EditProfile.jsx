@@ -4,9 +4,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import {
-    putUserInfo
-} from '../../store/profileSlice';
+import { profileActionCreators } from '../../store/sagas/profileSaga';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -107,7 +105,7 @@ const Profile = props => {
 
         schema.validate(profileInfo)
             .then(() => {
-                dispatch(putUserInfo(profileInfo));
+                dispatch(profileActionCreators.updateUserInfo(profileInfo));
                 errorMessage && setErrorMessage('');
             })
             .catch(({ message }) => {

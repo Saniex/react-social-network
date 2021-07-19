@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { 
     selectAppTheme, 
     setTheme 
-} from '../../store/appSlice';
+} from '../../store/slices/appSlice';
 
 
 

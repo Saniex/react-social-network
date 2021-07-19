@@ -1,17 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-import { getAuthStatus } from "./authSlice";
-
-
-
-export const getAppInit = createAsyncThunk(
-    'app/initApp',
-    async (_, { dispatch }) => {
-        await Promise.all([
-            dispatch(getAuthStatus())
-        ]);
-    }
-);
+import { createSlice } from "@reduxjs/toolkit";
 
 
 
@@ -25,6 +12,9 @@ const appSlice = createSlice({
         errorMessage: null
     },
     reducers: {
+        setAppInitStatus: state => {
+            state.isInit = true;
+        },
         setTheme: state => {
             const currentTheme = state.theme === 'light' ? 'dark' : 'light';
             state.theme = currentTheme;
@@ -33,18 +23,9 @@ const appSlice = createSlice({
         setSidebarStatus: state => {
             state.isSidebarOpen = state.isSidebarOpen ? false : true;
         },
-        setErrorStatus: (state, { payload }) => {
+        setAppErrorStatus: (state) => {
             state.isError = true;
-            state.errorMessage = payload;
         }
-    },
-    extraReducers: {
-        [getAppInit.fulfilled]: state => {
-            state.isInit = true;
-        },
-        [getAppInit.rejected]: state => {
-            state.isError = true;
-        },
     }
 });
 
@@ -57,5 +38,11 @@ export const selectAppErrorStatus = state => state.app.isError;
 export const selectAppErrorMessage = state => state.app.errorMessage;
 
 
-export const { setTheme, setSidebarStatus, setErrorStatus } = appSlice.actions;
+export const { 
+    setAppInitStatus, 
+    setTheme, 
+    setSidebarStatus, 
+    setAppErrorStatus 
+} = appSlice.actions;
+
 export default appSlice.reducer;

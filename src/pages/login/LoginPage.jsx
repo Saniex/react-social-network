@@ -6,12 +6,16 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 
 import {
-    deleteAuthErrorMessage,
     getLogIn,
     selectAuthErrorMessage,
     selectAuthFetchingStatus,
+    setAuthErrorMessage,
     selectAuthStatus
-} from '../../store/authSlice';
+} from '../../store/slices/authSlice';
+
+import {
+    authActionCreators
+} from '../../store/sagas/authSaga';
 
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
@@ -152,7 +156,7 @@ const LoginPage = props => {
     const loginFormHandler = formData => {
         resetErrors();
         loginFormSchema.validate(formData)
-            .then(() => dispatch(getLogIn(formData)))
+            .then(() => dispatch(authActionCreators.getLogIn(formData)))
             .catch(error => errorMessageHandler(error.message));
     };
 
@@ -166,7 +170,7 @@ const LoginPage = props => {
 
     const resetErrors = () => {
         if (errorMessage) setErrorMessage(null);
-        if (authErrorMessage) dispatch(deleteAuthErrorMessage());
+        if (authErrorMessage) dispatch(setAuthErrorMessage());
     }
 
 

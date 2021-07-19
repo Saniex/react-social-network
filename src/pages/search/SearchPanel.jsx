@@ -4,17 +4,18 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { 
-    selectAuthStatus 
-} from '../../store/authSlice';
+import { selectAuthStatus } from '../../store/slices/authSlice';
 
 import {
     cleanUsersList,
-    getUsersList,
     selectUsersList,
     selectUsersFetchingStatus,
     selectUsersTotalCount
-} from '../../store/usersSlice';
+} from '../../store/slices/usersSlice';
+
+import {
+    usersActionCreators
+} from '../../store/sagas/usersSaga';
 
 import Input from '../../components/Input';
 import Icon from '../../components/Icon';
@@ -138,7 +139,7 @@ const SearchPanel = props => {
     // Service functions
 
     const requestUsers = () => {
-        dispatch(getUsersList({count, page, term, friend}));
+        dispatch(usersActionCreators.getUsersList({ count, page, term, friend }));
         setPage(prevState => prevState + 1);
     }
 

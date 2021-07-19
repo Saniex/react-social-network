@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { 
-  getAppInit,
+import {
   selectAppErrorMessage,
   selectAppErrorStatus,
   selectAppInitStatus, 
   selectAppTheme
-} from './store/appSlice';
+} from './store/slices/appSlice';
+
+import { appActionCreators } from './store/sagas/appSaga';
 
 import Preloader from './components/Preloader';
 import ErrorPage from './pages/error/ErrorPage';
@@ -22,7 +23,6 @@ import SearchPage from './pages/search/SearchPage';
 
 import { lightTheme, darkTheme } from './utils/appThemes';
 import GlobalStyle from './utils/globalStyle';
-import ChatPage from './pages/chat/ChatPage';
 
 
 
@@ -69,7 +69,7 @@ const App = props => {
 
 
   useEffect(() => {
-    if (!isAppInit) dispatch(getAppInit());
+    if (!isAppInit) dispatch(appActionCreators.initApp())
   }, [isAppInit])
 
 
@@ -99,7 +99,6 @@ const App = props => {
             <Route path="/login" component={LoginPage} />
             <Route path="/profile/edit" component={EditPage} />
             <Route path="/profile/:userID?" component={ProfilePage} />
-            <Route path="/chat" component={ChatPage} />
             <Route path="/search" component={SearchPage} />
             <Redirect to="/profile" />
           </Switch>

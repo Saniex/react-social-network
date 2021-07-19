@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import { putUserStatus } from '../../store/profileSlice';
+import { profileActionCreators } from '../../store/sagas/profileSaga';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -57,7 +57,7 @@ const Status = props => {
     const statusFormHandler = ({ statusText }) => {
         schema.validate(statusText)
             .then(() => {
-                dispatch(putUserStatus(statusText));
+                dispatch(profileActionCreators.updateUserStatus(statusText));
                 errorMessage && setErrorMessage('');
             })
             .catch((error) => {

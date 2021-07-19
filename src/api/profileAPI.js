@@ -4,29 +4,29 @@ import API from '../utils/API';
 
 const profileAPI = {
     getStatus: async ID => {
-        const statusData = await API.get(`profile/status/${ID}`);
+        const response = await API.get(`profile/status/${ID}`);
 
-        return statusData.data;
+        return response.data;
     },
     setStatus: async status => {
-        const statusData = await API.put(`profile/status`, { status });
+        const response = await API.put(`profile/status`, { status });
 
-        return statusData;
+        return response.data;
     },
     getProfile: async ID => {
-        const profileData = await API.get(`profile/${ID}`);
+        const response = await API.get(`profile/${ID}`);
 
-        return profileData.data;
+        return response.data;
     },
     setProfile: async profileInfo => {
-        const profileData = await API.put(`profile`, profileInfo);
+        const response = await API.put(`profile`, profileInfo);
 
-        return profileData;
+        return response.data;
     },
     setPhoto: async photo => {
-        const photoData = await API.put('profile/photo', photo);
+        const response = await API.put('profile/photo', photo);
 
-        return photoData.data;
+        return response.data;
     }
 }
 
