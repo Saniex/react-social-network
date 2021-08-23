@@ -129,8 +129,8 @@ export function* updateUserPhoto({ _, payload }) {
 export function* getUserProfile({ _, payload }) {
     try {
         yield all([
-            call(getUserInfo, payload),
-            call(getUserStatus, payload),
+            call(getUserInfo, payload.ID),
+            call(getUserStatus, payload.ID),
             call(getUserFollowingStatus, payload)
         ]);
 

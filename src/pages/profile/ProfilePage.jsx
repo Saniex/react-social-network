@@ -37,7 +37,10 @@ const ProfilePage = props => {
 
 
     useLayoutEffect(() => {
-        (pageID || isAuth) && dispatch(profileActionCreators.getUserProfile(pageID || userData.id));
+        (pageID || isAuth) && dispatch(profileActionCreators.getUserProfile({
+            ID: pageID || userData.id,
+            isAuth
+        }));
 
         return () => dispatch(clearProfileData());
     }, [pageID]);

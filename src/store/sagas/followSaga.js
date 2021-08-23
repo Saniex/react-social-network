@@ -28,14 +28,16 @@ export const followActionCreators = {
 //@ Get user following status
 
 export function* getUserFollowingStatus(payload) {
-    try {
-        const response = yield call(followAPI.checkFollow, payload);
-
-        yield put(setUserFollowingStatus(response));
-    }
-    catch(error) {
-        yield put(setAppErrorStatus());
-        console.error(error.message);
+    if (payload.isAuth) {
+        try {
+            const response = yield call(followAPI.checkFollow, payload.ID);
+    
+            yield put(setUserFollowingStatus(response));
+        }
+        catch(error) {
+            yield put(setAppErrorStatus());
+            console.error(error.message);
+        }
     }
 }
 
